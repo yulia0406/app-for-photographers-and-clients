@@ -1,0 +1,442 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: root
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name:  id_users
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: login
+                  type: varchar(12)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: fio
+                  type: varchar(80)
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: phone
+                  type: bigint
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(650)
+                  constraints:
+                    unique: false
+              - column:
+                  name: email
+                  type: varchar(40)
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: post
+                  type: varchar(15)
+                  constraints:
+                     unique: false
+                     nullable: false
+              - column:
+                  name: profile_status
+                  type: varchar(10000)
+                  constraints:
+                    unique: false
+                    nullable: true
+
+  - changeSet:
+      id: 3
+      author: root
+      changes:
+        - createTable:
+            tableName: photosession
+            columns:
+              - column:
+                  name: id_photosession
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: date_create
+                  type: DateTime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_author
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_client
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number_processed
+                  type: int
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 4
+      author: root
+      changes:
+        - createTable:
+            tableName: image
+            columns:
+              - column:
+                  name: id_image
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: link
+                  type: varchar(600)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: link_orig
+                  type: varchar(600)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(220)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: date_create
+                  type: DateTime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: resolution
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: id_format
+                  type: int
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: id_photosession
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: photo_processing
+                  type: int
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 5
+      author: root
+      changes:
+        - createTable:
+            tableName: comments
+            columns:
+              - column:
+                  name: id_comments
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: login
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: varchar(600)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: DateTime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_versions
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: id_image
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mask_area
+                  type: int
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 6
+      author: root
+      changes:
+        - createTable:
+            tableName: versions
+            columns:
+              - column:
+                  name: id_versions
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: id_image_original
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_image_processed
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_consent_publ_author
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: id_consent_publ_client
+                  type: int
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 7
+      author: root
+      changes:
+        - createTable:
+            tableName: status
+            columns:
+              - column:
+                  name: id_status
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_status
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 8
+      author: root
+      changes:
+        - createTable:
+            tableName: consent_publ
+            columns:
+              - column:
+                  name: id_consent_publ
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_consent_publ
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 9
+      author: root
+      changes:
+        - createTable:
+            tableName: format
+            columns:
+              - column:
+                  name: id_format
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_format
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+
+
+
+  - changeSet:
+      id: 11
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_client
+            baseTableName: photosession
+            constraintName: fk_2
+            referencedColumnNames: id_users
+            referencedTableName: users
+
+  - changeSet:
+      id: 27
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: status
+            baseTableName: photosession
+            constraintName: fk_222
+            referencedColumnNames: id_status
+            referencedTableName: status
+
+  - changeSet:
+      id: 12
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_author
+            baseTableName: photosession
+            constraintName: fk_3
+            referencedColumnNames: id_users
+            referencedTableName: users
+
+  - changeSet:
+      id: 13
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_format
+            baseTableName: image
+            constraintName: fk_44
+            referencedColumnNames: id_format
+            referencedTableName: format
+
+
+  - changeSet:
+      id: 14
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_image_original
+            baseTableName: versions
+            constraintName: fk_55
+            referencedColumnNames: id_image
+            referencedTableName: image
+
+  - changeSet:
+      id: 15
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_image_processed
+            baseTableName: versions
+            constraintName: fk_56
+            referencedColumnNames: id_image
+            referencedTableName: image
+
+  - changeSet:
+      id: 16
+      author: root
+      changes:
+          - addForeignKeyConstraint:
+              baseColumnNames: id_consent_publ_author
+              baseTableName: versions
+              constraintName: fk_7
+              referencedColumnNames: id_consent_publ
+              referencedTableName: consent_publ
+  - changeSet:
+      id: 17
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: login
+            baseTableName: comments
+            constraintName: fk_11
+            referencedColumnNames: id_users
+            referencedTableName: users
+  - changeSet:
+      id: 18
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_versions
+            baseTableName: comments
+            constraintName: fk_71
+            referencedColumnNames: id_versions
+            referencedTableName: versions
+
+
+
+
+  - changeSet:
+      id: 21
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_photosession
+            baseTableName: image
+            constraintName: fk_74
+            referencedColumnNames: id_photosession
+            referencedTableName: photosession
+
+
+
+  - changeSet:
+      id: 23
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_image
+            baseTableName: comments
+            constraintName: fk_76
+            referencedColumnNames: id_image
+            referencedTableName: image
+
+  - changeSet:
+      id: 24
+      author: root
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_consent_publ_client
+            baseTableName: versions
+            constraintName: fk_79
+            referencedColumnNames: id_consent_publ
+            referencedTableName: consent_publ
+
+
+
